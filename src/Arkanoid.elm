@@ -250,25 +250,28 @@ view model =
 gameField : Model -> Html Msg
 
 gameField model =
-  svg
-    [ width (fromFloat fieldWidth)
-    , height (fromFloat fieldHeight)
-    , viewBox ("0 0 " ++ fromFloat fieldWidth ++ " " ++ fromFloat fieldHeight)
-    ]
-    ( List.append [
-        rect
-          [ x "0"
-          , y "0"
-          , width (fromFloat fieldWidth)
-          , height (fromFloat fieldHeight)
-          , fill "black"
-          ]
-          [ 
-          ]
-      , svgBall model.ball
-      , svgBlock model.bar
-      ] (model.blocks |> List.map svgBlock)
-    )
+  div []
+  [ p [] [Html.text "'a'キーで左、's'キーで右"]
+  , svg
+      [ width (fromFloat fieldWidth)
+      , height (fromFloat fieldHeight)
+      , viewBox ("0 0 " ++ fromFloat fieldWidth ++ " " ++ fromFloat fieldHeight)
+      ]
+      ( List.append [
+          rect
+            [ x "0"
+            , y "0"
+            , width (fromFloat fieldWidth)
+            , height (fromFloat fieldHeight)
+            , fill "black"
+            ]
+            [
+            ]
+        , svgBall model.ball
+        , svgBlock model.bar
+        ] (model.blocks |> List.map svgBlock)
+      )
+  ]
 
 svgBall : Ball -> Html Msg
 svgBall ball =
